@@ -27,7 +27,7 @@ function SignIn() {
         ? navigate("/company/dashboard")
         : navigate("/");
     } catch (error) {
-      error.response.data.errors.map((err) => toast.error(err));
+      toast.error(error.message);
     } finally {
       setLoading(false);
     }

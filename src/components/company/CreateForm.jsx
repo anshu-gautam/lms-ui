@@ -4,7 +4,7 @@ import { axios } from "../../utils";
 
 import TextInput from "../shared/TextInput";
 
-function CreateCompany({ closeModal }) {
+function CreateCompany({ closeModal, fetchCompany }) {
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -20,16 +20,19 @@ function CreateCompany({ closeModal }) {
 
     const clothTypes = clothType.split(",");
     const prices = price.split(",");
-    const rate = prices.map((p, idx) => ({
-      clothType: clothTypes[idx],
-      price: p,
-    }));
+
+    const rate = {};
+    
+    clothTypes.forEach((cloth, index) => {
+      rate[cloth] = prices[index];
+    });
 
     try {
       setLoading(true);
       await axios.post("/companies", { name, rate });
       toast.success("Company created successfully !");
       closeModal();
+      fetchCompany();
     } catch (err) {
       err.response.data.errors.map((err) => toast.error(err));
     } finally {
@@ -54,7 +57,7 @@ function CreateCompany({ closeModal }) {
           <TextInput
             label="Cloth type"
             name="clothType"
-            placeholder="Topwear"
+            placeholder="Add comma separated cloth types"
             value={clothType}
             onChange={handleClothTypeChange}
           />
@@ -62,7 +65,7 @@ function CreateCompany({ closeModal }) {
             label="Price"
             name="price"
             type="price"
-            placeholder="₹ 99"
+            placeholder="Add comma separated prices in the same order as cloth types"
             value={price}
             onChange={handlePriceChange}
           />

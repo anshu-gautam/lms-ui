@@ -1,7 +1,14 @@
-function TextInput({ label, type = "text", name, placeholder, onChange, className }) {
+function TextInput({
+  label,
+  type = "text",
+  name,
+  placeholder,
+  onChange,
+  className,
+}) {
   return (
     <div className="flex flex-col">
-      <span className="font-semibold text-xl">{label}</span>
+      <span className="font-semibold text-xl capitalize">{label}</span>
       <input
         type={type}
         name={name}

@@ -1,10 +1,10 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
-import { SignIn, SignUp } from "./pages";
+import { SignIn, SignUp, CompanyDashboard, UserDashboard } from "./pages";
 import { AuthenticatedRoute } from "./utils";
-import CompanyDashBoard from "./pages/CompanyDashboard";
 import { Layout } from "./components/shared/layout";
+import OrderStats from "./components/orders/OrderStats";
 
 function App() {
   return (
@@ -14,11 +14,23 @@ function App() {
         element={
           <AuthenticatedRoute>
             <Layout>
-              <CompanyDashBoard />
+              <CompanyDashboard />
             </Layout>
           </AuthenticatedRoute>
         }
       />
+      <Route
+        path="/"
+        element={
+          <AuthenticatedRoute>
+            <Layout>
+              <UserDashboard />
+            </Layout>
+          </AuthenticatedRoute>
+        }
+      />
+      
+      
       <Route path="/signup" element={<SignUp />} />
       <Route path="/signin" element={<SignIn />} />
     </Routes>
