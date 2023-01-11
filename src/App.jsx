@@ -1,36 +1,35 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
-import { SignIn, SignUp, CompanyDashboard, UserDashboard } from "./pages";
-import { AuthenticatedRoute } from "./utils";
+import { SignIn, SignUp, Dashboard } from "./pages";
+import { AuthenticatedRoute, userData } from "./utils";
 import { Layout } from "./components/shared/layout";
-import OrderStats from "./components/orders/OrderStats";
+import Userprofile from "./pages/UserProfile";
 
 function App() {
   return (
     <Routes>
       <Route
-        path="/company/dashboard"
+        path="/"
         element={
           <AuthenticatedRoute>
             <Layout>
-              <CompanyDashboard />
+              <Dashboard />
             </Layout>
           </AuthenticatedRoute>
         }
       />
       <Route
-        path="/"
+        path="/profile"
         element={
           <AuthenticatedRoute>
             <Layout>
-              <UserDashboard />
+              <Userprofile />
             </Layout>
           </AuthenticatedRoute>
         }
       />
-      
-      
+
       <Route path="/signup" element={<SignUp />} />
       <Route path="/signin" element={<SignIn />} />
     </Routes>

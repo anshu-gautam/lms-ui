@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { toast } from "react-hot-toast";
-import { axios } from "../../utils";
+import { axios, userData } from "../../utils";
 
 import TextInput from "../shared/TextInput";
 
@@ -22,14 +22,18 @@ function CreateCompany({ closeModal, fetchCompany }) {
     const prices = price.split(",");
 
     const rate = {};
-    
+
     clothTypes.forEach((cloth, index) => {
       rate[cloth] = prices[index];
     });
 
     try {
       setLoading(true);
-      await axios.post("/companies", { name, rate });
+      await axios.post(
+        "/companies",
+        { name, rate },
+        { headers: { Authorization: userData()?.token } }
+      );
       toast.success("Company created successfully !");
       closeModal();
       fetchCompany();

@@ -6,12 +6,12 @@ export default function SideNav() {
   const navigate = useNavigate();
 
   const dashboardURL =
-    userData()?.userRole === "company" ? "/company/dashboard" : "/dashboard";
+    userData()?.userRole === "company" ? "/company/dashboard" : "/";
 
   const isLoggedIn = userData()?.token?.length;
 
   const signOut = () => {
-    localStorage.clear();
+    localStorage.removeItem("user-data");
     navigate("/signin", { replace: true });
   };
 
@@ -26,7 +26,7 @@ export default function SideNav() {
             <ul className="flex flex-col space-y-5 md:space-y-10">
               <li>
                 <Link
-                  to={dashboardURL}
+                  to="/"
                   className="hover:underline underline-offset-2 px-4 py-1 tracking-wider"
                 >
                   <div className="tooltip tooltip-right" data-tip="Dashboard">

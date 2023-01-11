@@ -18,7 +18,7 @@ function SignUp() {
       toast.success("Signed up successfully!");
       navigate("/signin");
     } catch (err) {
-      err.response.data.errors.map((err) => toast.error(err));
+      toast.error(err.response.data);
     } finally {
       setLoading(false);
     }

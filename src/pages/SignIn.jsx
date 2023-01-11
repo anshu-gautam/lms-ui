@@ -23,9 +23,12 @@ function SignIn() {
       );
       localStorage.setItem("user-data", JSON.stringify(response.data));
       toast.success("Signed in successfully.");
-      response.data.user.userRole === "company"
-        ? navigate("/company/dashboard")
-        : navigate("/");
+      navigate("/");
+
+      // response.data?.user?.userRole === "company"
+
+      //   ? navigate("/company/dashboard")
+      //   : navigate("/user/dashboard");
     } catch (error) {
       toast.error(error.message);
     } finally {
