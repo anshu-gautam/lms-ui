@@ -53,7 +53,7 @@ export default function SideNav() {
               Sign out
             </button>
           ) : (
-            <Link href="/auth/signin">
+            <Link href="/signin">
               <Button className="bg-slate-800">Sign in</Button>
             </Link>
           )}

@@ -7,7 +7,7 @@ function AuthenticatedRoute({ children }) {
     JSON.parse(localStorage.getItem("user-data"))?.token?.length > 0;
 
   if (!isLoggedIn()) {
-    return <Navigate to="/auth/signin" state={{ from: location }} replace />;
+    return <Navigate to="/signin" state={{ from: location }} replace />;
   }
 
   return children;

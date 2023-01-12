@@ -24,11 +24,6 @@ function SignIn() {
       localStorage.setItem("user-data", JSON.stringify(response.data));
       toast.success("Signed in successfully.");
       navigate("/");
-
-      // response.data?.user?.userRole === "company"
-
-      //   ? navigate("/company/dashboard")
-      //   : navigate("/user/dashboard");
     } catch (error) {
       toast.error(error.message);
     } finally {
